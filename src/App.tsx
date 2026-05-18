@@ -401,8 +401,8 @@ export default function App() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-slate-400 font-medium">© 2026 Felipe A. J.</p>
           <div className="flex flex-wrap justify-center gap-6 text-slate-400 text-sm sm:text-base">
-            <a href="#" className="hover:text-cyan-400 transition-colors hover:drop-shadow-[0_0_4px_rgba(34,211,238,0.4)]">GitHub</a>
-            <a href="https://github.com/felipecti2012-sudo" className="hover:text-cyan-400 transition-colors hover:drop-shadow-[0_0_4px_rgba(34,211,238,0.4)]">LinkedIn</a>
+            <a href="https://github.com/felipecti2012-sudo" className="hover:text-cyan-400 transition-colors hover:drop-shadow-[0_0_4px_rgba(34,211,238,0.4)]">GitHub</a>
+            <a href="https://www.linkedin.com/in/felipe-assun%C3%A7%C3%A3o-89a817395/" className="hover:text-cyan-400 transition-colors hover:drop-shadow-[0_0_4px_rgba(34,211,238,0.4)]">LinkedIn</a>
             <a href="mailto:felipecti2012@gmail.com" className="hover:text-cyan-400 transition-colors hover:drop-shadow-[0_0_4px_rgba(34,211,238,0.4)]">Gmail</a>
           </div>
         </div>
