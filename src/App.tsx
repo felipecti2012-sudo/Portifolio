@@ -145,143 +145,14 @@ export default function App() {
   return (
     <main className="relative min-h-screen bg-slate-950 text-white overflow-x-hidden font-sans">
       
-      {/* Estilos Otimizados para Aceleração Total por Hardware (Sem Gargalos de CPU/Layout) */}
-      <style>{`
-        /* Animação para mover o degradê de fundo */
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animated-gradient {
-          background-size: 200% auto;
-          animation: gradient-shift 4s ease infinite;
-        }
-
-        /* Animações de Glitch Leves e Seguras para Dispositivos Mobile (Removido o pesado clip-path) */
-        @keyframes hover-glitch-anim-1 {
-          0%, 100% { opacity: 0; transform: translate3d(0, 0, 0) skew(0deg); }
-          5% { opacity: 0.9; transform: translate3d(-2px, -1px, 0) skew(0.5deg); }
-          10% { opacity: 0.9; transform: translate3d(1px, 2px, 0) skew(-0.5deg); }
-          15% { opacity: 0.9; transform: translate3d(-1px, -2px, 0) skew(0.3deg); }
-          20% { opacity: 0.9; transform: translate3d(2px, 1px, 0) skew(-0.3deg); }
-          25% { opacity: 0.9; transform: translate3d(-1px, 1px, 0) skew(0deg); }
-          30% { opacity: 0; transform: translate3d(0, 0, 0) skew(0deg); }
-        }
-        @keyframes hover-glitch-anim-2 {
-          0%, 100% { opacity: 0; transform: translate3d(0, 0, 0) skew(0deg); }
-          5% { opacity: 0.9; transform: translate3d(2px, 1px, 0) skew(-0.5deg); }
-          10% { opacity: 0.9; transform: translate3d(-2px, -1px, 0) skew(0.5deg); }
-          15% { opacity: 0.9; transform: translate3d(1px, 2px, 0) skew(-0.3deg); }
-          20% { opacity: 0.9; transform: translate3d(-1px, -2px, 0) skew(0.3deg); }
-          25% { opacity: 0.9; transform: translate3d(2px, -1px, 0) skew(0deg); }
-          30% { opacity: 0; transform: translate3d(0, 0, 0) skew(0deg); }
-        }
-        @keyframes hover-shake-anim {
-          0%, 30%, 100% { transform: translate3d(0, 0, 0); }
-          5% { transform: translate3d(-1px, -0.5px, 0); }
-          10% { transform: translate3d(0.5px, 1px, 0); }
-          15% { transform: translate3d(-0.5px, -1px, 0); }
-          20% { transform: translate3d(1px, 0.5px, 0); }
-        }
-
-        /* Animação suave de cor de título no Hover */
-        @keyframes hover-title-pulse {
-          0%, 25% { color: #22d3ee; }
-          30%, 100% { color: #ffffff; }
-        }
-        
-        /* Animação suave para o letreiro Neon principal */
-        @keyframes neon-pulse {
-          0%, 100% { text-shadow: 0 0 8px rgba(34, 211, 238, 0.4); }
-          50% { text-shadow: 0 0 12px rgba(34, 211, 238, 0.7); }
-        }
-
-        /* Animação de piscar do Cursor do Terminal */
-        @keyframes blink {
-          50% { opacity: 0; }
-        }
-        .terminal-cursor {
-          animation: blink 0.8s step-end infinite;
-          text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-        }
-
-        .neon-text-pulse {
-          animation: neon-pulse 3s infinite;
-        }
-
-        .neon-btn-cyan {
-          box-shadow: 0 0 8px rgba(34, 211, 238, 0.15);
-          transition: transform 0.2s ease, box-shadow 0.2s ease, text-shadow 0.2s ease;
-        }
-        .neon-btn-cyan:hover {
-          box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
-          text-shadow: 0 0 4px rgba(34, 211, 238, 0.8);
-        }
-
-        .neon-btn-purple {
-          box-shadow: 0 0 8px rgba(168, 85, 247, 0.15);
-          transition: transform 0.2s ease, box-shadow 0.2s ease, text-shadow 0.2s ease;
-        }
-        .neon-btn-purple:hover {
-          box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
-          text-shadow: 0 0 4px rgba(168, 85, 247, 0.8);
-        }
-
-        /* Pseudo-elementos ocultos em repouso */
-        .glitch-text::before, .glitch-text::after {
-          opacity: 0;
-          transition: opacity 0.2s ease;
-        }
-
-        /* Ativação instantânea e suave de Glitch e Cores no Hover (Otimizado para Mobile/Celulares) */
-        .group:hover .glitch-text::before {
-          content: attr(data-text);
-          position: absolute;
-          left: -1px;
-          text-shadow: 1px 0 #06b6d4;
-          top: 0;
-          color: #fff;
-          background: transparent;
-          overflow: hidden;
-          animation: hover-glitch-anim-1 2.5s infinite linear;
-        }
-        
-        .group:hover .glitch-text::after {
-          content: attr(data-text);
-          position: absolute;
-          left: 1px;
-          text-shadow: -1px 0 #d946ef;
-          top: 0;
-          color: #fff;
-          background: transparent;
-          overflow: hidden;
-          animation: hover-glitch-anim-2 2.5s infinite linear;
-        }
-
-        .group:hover.glitch-card {
-          animation: hover-shake-anim 2.5s ease-in-out infinite;
-          border-color: rgba(6, 182, 212, 0.4) !important;
-          box-shadow: 0 0 15px rgba(6, 182, 212, 0.2) !important;
-          transform: translate3d(0, -4px, 0);
-        }
-
-        .group:hover .glitch-title {
-          animation: hover-title-pulse 2.5s infinite;
-        }
-
-        /* Estrutura base dos cards (Otimizados em CPU, sem consumo excessivo de memória) */
-        .glitch-card {
-          transform: translate3d(0, 0, 0);
-          transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-        }
-      `}</style>
+     
+     
 
       {/* Fundo dinâmico mais leve e suave (Sem múltiplos gradientes pesados sobrepostos) */}
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_15%,_rgba(139,92,246,0.12),_transparent_50%)]" />
 
       {/* ==========================================
-          HERO / APRESENTAÇÃO PRINCIPAL
+          APRESENTAÇÃO PRINCIPAL
           ========================================== */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center z-10">
         <p className="text-cyan-400 tracking-[0.35em] text-sm mb-4 font-semibold neon-text-pulse">
@@ -295,7 +166,10 @@ export default function App() {
           </h1>
           <span className="text-5xl md:text-8xl font-extralight text-fuchsia-500 ml-1 terminal-cursor select-none">|</span>
         </div>
-
+        {/*=============================================
+            SOBRE
+          ============================================== */}
+          
         <p className="mt-6 text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
           Desenvolvedor focado em criar experiências web modernas, interativas e com visual futurista.
         </p>
